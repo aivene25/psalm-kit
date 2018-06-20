@@ -5,9 +5,17 @@
  */
 
 import React, { Component } from "react";
-import { Platform, StyleSheet, Text, View } from "react-native";
-
 import {
+  Platform,
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity
+} from "react-native";
+import { createStackNavigator } from "react-navigation";
+import PrayerDetail from "./prayerDetail";
+import {
+  Button,
   Image,
   Row,
   Examples,
@@ -20,15 +28,8 @@ import {
   Divider
 } from "@shoutem/ui";
 
-const instructions = Platform.select({
-  ios: "Press Cmd+R to reload,\n" + "Cmd+D or shake for dev menu",
-  android:
-    "Double tap R on your keyboard to reload,\n" +
-    "Shake or press menu button for dev menu"
-});
-
 //type Props = {};
-export default class prayerScreen extends Component {
+class prayerScreen extends Component {
   constructor(props) {
     super(props);
     this.renderRow = this.renderRow.bind(this);
@@ -98,41 +99,82 @@ export default class prayerScreen extends Component {
 
   renderRow(restaurant) {
     return (
-      <Row>
-        <Image
-          styleName="small-avatar top"
-          source={{ uri: restaurant.image.url }}
-        />
-        <View styleName="vertical">
-          <View styleName="horizontal space-between">
-            <Subtitle styleName="bold">{restaurant.prayer}</Subtitle>
+      <TouchableOpacity
+        onPress={() =>
+          this.props.navigation.navigate("Details", {
+            notice: restaurant.notice,
+            content: restaurant.content,
+            prayer: restaurant.prayer,
+            image: restaurant.image.url
+          })
+        }
+      >
+        <Row>
+          <Image
+            styleName="small-avatar top"
+            source={{ uri: restaurant.image.url }}
+          />
+          <View styleName="vertical">
+            <View styleName="horizontal space-between">
+              <Subtitle styleName="bold">{restaurant.prayer}</Subtitle>
+            </View>
+            <Text styleName="multiline"> {restaurant.excerpt} </Text>
           </View>
-          <Text styleName="multiline"> {restaurant.excerpt} </Text>
-        </View>
-      </Row>
+        </Row>
+      </TouchableOpacity>
     );
   }
   render() {
     const restaurants = this.state.restaurants;
     return (
       <Screen>
-        <ImageBackground
-          source={{
-            uri: "https://shoutem.github.io/img/ui-toolkit/examples/image-3.png"
-          }}
-          style={{ width: 375, height: 70 }}
-        >
-          <NavigationBar
-            styleName="clear"
-            centerComponent={<Title styleName="bold">Prayers</Title>}
-          />
-        </ImageBackground>
         <ListView data={restaurants} renderRow={this.renderRow} />
       </Screen>
     );
   }
 }
 
+export default (PrayerStack = createStackNavigator(
+  {
+    Home: {
+      screen: prayerScreen,
+      navigationOptions: () => ({
+        headerStyle: {
+          backgroundColor: "green"
+        },
+        headerTintColor: "#fff",
+        headerTitleStyle: {
+          fontWeight: "bold"
+        },
+        title: "Prayers",
+        headerRight: (
+          <Button
+            onPress={() => alert("This is a button!")}
+            title="Info"
+            color="#fff"
+          />
+        )
+      })
+    },
+    Details: {
+      screen: PrayerDetail,
+      navigationOptions: () => {
+        return {
+          headerStyle: {
+            backgroundColor: "green"
+          },
+          headerTintColor: "#fff",
+          headerTitleStyle: {
+            fontWeight: "bold"
+          }
+        };
+      }
+    }
+  },
+  {
+    initialRouteName: "Home"
+  }
+));
 const styles = StyleSheet.create({
   container: {
     flex: 1,

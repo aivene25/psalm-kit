@@ -20,9 +20,9 @@ import {
 import { TabNavigator, createBottomTabNavigator } from "react-navigation";
 import Icon from "react-native-vector-icons/Ionicons";
 
-import psalmsScreen from "./src/screens/psalmsScreen";
+import PsalmsStack from "./src/screens/psalmsScreen";
 import aboutScreen from "./src/screens/aboutScreen";
-import prayerScreen from "./src/screens/prayerScreen";
+import PrayerStack from "./src/screens/prayerScreen";
 
 /*const Tabs = createBottomTabNavigator({
   Psalms:{
@@ -43,7 +43,7 @@ import prayerScreen from "./src/screens/prayerScreen";
 const Tabs = createBottomTabNavigator(
   {
     Psalm: {
-      screen: psalmsScreen,
+      screen: PsalmsStack,
       navigationOptions: () => ({
         tabBarIcon: ( { focused, tintColor }) => {
           return <Icon name="ios-home" size={22} color={tintColor} />
@@ -51,7 +51,7 @@ const Tabs = createBottomTabNavigator(
       })
     },
     Prayers: {
-      screen: prayerScreen,
+      screen: PrayerStack,
       navigationOptions: ( ) => ({
         tabBarIcon: ( { focused, tintColor }) => {
           return <Icon name="ios-pint" size={22} color={tintColor} />
