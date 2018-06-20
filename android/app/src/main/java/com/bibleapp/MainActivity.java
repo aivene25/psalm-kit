@@ -17,8 +17,5 @@ public class MainActivity extends ReactActivity {
         return "bibleApp";
     }
 
-    private static  String test(){
-        return "etryy";
-    }
-
 }
+

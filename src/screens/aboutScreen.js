@@ -5,9 +5,12 @@
  */
 
 import React, { Component } from "react";
-import { Platform, StyleSheet, Text, View } from "react-native";
+import { Platform, StyleSheet, Text, View, FlatList, ScrollView } from "react-native";
+import Icon from "react-native-vector-icons/Ionicons";
 
 import {
+  Image,
+  Row,
   Examples,
   ImageBackground,
   Title,
@@ -17,7 +20,6 @@ import {
   Subtitle,
   Divider
 } from "@shoutem/ui";
-
 
 const instructions = Platform.select({
   ios: "Press Cmd+R to reload,\n" + "Cmd+D or shake for dev menu",
@@ -106,11 +108,43 @@ export default class aboutScreen extends Component {
   }
   render() {
     const restaurants = this.state.restaurants;
+    /*
     return (
       <Screen>
         <NavigationBar title="Restaurants" styleName="inline" />
         <ListView data={restaurants} renderRow={this.renderRow} />
       </Screen>
+    );*/
+    return (
+      <ScrollView>
+        <Image styleName="featured" source={require("./PST.jpg")} />
+        <Row styleName="small">
+          <Image
+            styleName="small-avatar"
+            source={{
+              uri:
+                "https://shoutem.github.io/img/ui-toolkit/examples/image-9.png"
+            }}
+          />
+          <Subtitle styleName="bold">Hazeez Adebayo</Subtitle>
+        </Row>
+        <Row>
+          <Icon name="logo-facebook" />
+          <Text>  Hazeez Adebayo</Text>
+        </Row>
+        <Row>
+          <Icon name="logo-twitter" />
+          <Text>  @Hazeez Adebayo </Text>
+        </Row>
+        <Row>
+          <Icon name="ios-information-circle" />
+          <Text>  Psalm Kit by @hazeezadebayo </Text>
+        </Row>
+        <Row>
+          <Icon name="ios-ionitron" />
+          <Text>  1.0.0</Text>
+        </Row>
+      </ScrollView>
     );
   }
 }
