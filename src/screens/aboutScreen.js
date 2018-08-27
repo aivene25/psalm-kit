@@ -126,15 +126,19 @@ export default class aboutScreen extends Component {
                 "https://shoutem.github.io/img/ui-toolkit/examples/image-9.png"
             }}
           />
-          <Subtitle styleName="bold">Hazeez Adebayo</Subtitle>
+          <Subtitle styleName="bold">Azeez Bayo</Subtitle>
+        </Row>
+        <Row>
+          <Icon name="logo-gmail" />
+          <Text>harzeezassociates@gmail.com</Text>
         </Row>
         <Row>
           <Icon name="logo-facebook" />
-          <Text>  Hazeez Adebayo</Text>
+          <Text>Azeez Bayo Nojeem</Text>
         </Row>
         <Row>
           <Icon name="logo-twitter" />
-          <Text>  @Hazeez Adebayo </Text>
+          <Text>@azeezbayo_NAB </Text>
         </Row>
         <Row>
           <Icon name="ios-information-circle" />

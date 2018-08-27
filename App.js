@@ -57,7 +57,8 @@ const Tabs = createBottomTabNavigator(
           return <Icon name="ios-pint" size={22} color={tintColor} />
         }
       })
-    },
+    }
+    /*
     About: {
       screen: aboutScreen,
       navigationOptions: () => ({
@@ -65,7 +66,7 @@ const Tabs = createBottomTabNavigator(
           return <Icon name="ios-person" size={22} color={tintColor} />
         }
       })
-    }
+    }*/
     
   },
   {
